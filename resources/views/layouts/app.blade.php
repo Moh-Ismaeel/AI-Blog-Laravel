@@ -20,37 +20,68 @@
                 <div class="left flex gap-14 items-center">
                     <img src="/images/Ai-logo.png" alt="" class="w-14">
                     <ul class="flex gap-8 text-base font-semibold">
-                        <li class="hover:text-sky-400"><a href="/">Home</a></li>
+                        <li class="hover:text-sky-400"><a href="{{ route('post.index') }}">Home</a></li>
                         <li class="hover:text-sky-400"><a href="#">AI BLog</a></li>
                         <li class="hover:text-sky-400"><a href="#">Ai Tools</a></li>
                         <li class="hover:text-sky-400"><a href="#">Affillates</a></li>
                     </ul>
+                    @auth
+                        @can('manageUsers', App\Models\User::class)
+                            <div class="manage overflow-hidden">
+                                <div class="dropdown">
+                                    <button class="dropbtn border-none outline-none px-4 py-3 m-0">Manage <i
+                                            class="fa fa-caret-down"></i></i></button>
+                                    <div class="dropdown-content absolute bg-slate-900 min-w-40 z-10">
+                                        <a href="{{ route('admin.users.index') }}"
+                                            class="text-base font-semibold border-b border-white hover:text-sky-400 hover:bg-neutral-100 float-none px-3 py-2 block">ManageUsers</a>
+                                        <a href="{{ route('admin.categories.index') }}"
+                                            class="text-base font-semibold border-b border-white hover:text-sky-400 float-none hover:bg-neutral-100 px-3 py-2 block">ManageCategories</a>
+                                        <a href="{{ route('admin.tags.index') }}"
+                                            class="text-base font-semibold border-b border-white hover:text-sky-400 float-none hover:bg-neutral-100 px-3 py-2 block">ManageTags</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endcan
+                    @endauth
                 </div>
+
+
+                {{-- @auth
+                @can('manageUsers', App\Models\User::class)
+                    <a href="{{ route('admin.users.index') }}"
+                        class="text-base font-semibold border-b border-white hover:text-sky-400">manageUsers</a>
+                @endcan
+            @endauth --}}
+
                 <div class="right flex gap-5">
-                    <a href="https://www.linkedin.com/wwwAIblog" class="text-xl hover:text-sky-400" target="_blank"><i
-                            class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://www.twitter.com/wwwAIblog" class="text-xl hover:text-sky-400" target="_blank"><i
-                            class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/wwwAIblog" class="text-xl hover:text-sky-400" target="_blank"><i
-                            class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/wwwAIblog" class="text-xl hover:text-sky-400" target="_blank"><i
-                            class="fa-brands fa-facebook-f"></i></a>
+                    <div class="social flex gap-3">
+                        <a href="https://www.linkedin.com/wwwAIblog" class="text-xl hover:text-sky-400"
+                            target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.twitter.com/wwwAIblog" class="text-xl hover:text-sky-400"
+                            target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/wwwAIblog" class="text-xl hover:text-sky-400"
+                            target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/wwwAIblog" class="text-xl hover:text-sky-400"
+                            target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                    @yield('logout')
                 </div>
+
             </nav>
             <div class="hero text-center text-white py-14">
-                <h1 class="main-title text-5xl border-b border-sky-700 max-w-max mx-auto pb-4 mb-8">AI Blog & AI News
-                </h1>
+                @yield('main-title')
                 @yield('sub-title')
                 @yield('read-update')
                 @yield('hero-image')
                 @yield('create-update')
+                @yield('hero-content')
             </div>
         </header>
         <main>
             <div class="content w-10/12 mx-auto">
                 @yield('content')
             </div>
-            @yield('subscribe-content')
+
         </main>
         <footer class="h-12 mx-auto flex items-center justify-between text-white bg-slate-950 px-9">
             <div class="left-footer">
