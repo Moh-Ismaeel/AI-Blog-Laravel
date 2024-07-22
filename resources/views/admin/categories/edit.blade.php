@@ -24,16 +24,19 @@
                 value="{{ $category->title }}">
         </div>
         <div class="input my-5">
-            <div class="image-current flex items-center justify-start gap-x-4 mb-10">
+            <div class="image-current flex flex-col items-center justify-start gap-2 mb-10">
                 <p class="text-white">Current Image: </p>
                 <img src="/images/{{ $category->image }}" alt="" class=" w-28 rounded-full">
             </div>
-            <label for="image" class="bg-blue-600 px-4 py-2 font-semibold cursor-pointer">Change Image</label>
+            <label for="image"
+                class="bg-blue-600 px-4 py-2 font-semibold cursor-pointer text-slate-50 border border-transparent hover:border-slate-50">Change
+                Image</label>
             <input type="file" name="image" id="image" class="invisible">
         </div>
         <div class="buttons flex gap-4 mt-6">
-            <a href="{{ route('admin.categories.index') }}" class="bg-neutral-100 text-xl px-4 py-1 rounded-md">Back</a>
-            <input type="submit" value="Send" class=" bg-neutral-100 text-xl px-4 py-1 rounded-md">
+            <a href="{{ route('admin.categories.index') }}"
+                class="bg-neutral-100 text-xl px-4 py-1 rounded-md hover:underline">Back</a>
+            <input type="submit" value="Send" class=" bg-neutral-100 text-xl px-4 py-1 rounded-md hover:underline">
         </div>
     </form>
 @endsection

@@ -12,7 +12,9 @@
 
 @section('hero-content')
     <h1 class="font-semibold text-2xl pb-3">All Categories</h1>
-    <a href="{{ route('admin.categories.create') }}" class="bg-sky-700 px-4 py-2 text-white rounded-lg">Add New Category +</a>
+    <a href="{{ route('admin.categories.create') }}"
+        class="bg-sky-700 px-4 py-2 text-white rounded-lg border border-transparent hover:border-slate-50">Add New Category
+        +</a>
     <div class="manage-categories flex justify-center items-center mt-10">
         <table class="w-6/12 text-left border border-solid border-white">
             <thead class="border border-solid border-white">
@@ -22,7 +24,7 @@
                 <th class="border border-solid border-white pl-2">Actions</th>
             </thead>
             <tbody class="border border-solid border-white">
-                @foreach ($categories as $category)
+                @forelse ($categories as $category)
                     <tr class="border border-solid border-white">
                         <td class="border border-solid border-white pl-2 py-3">{{ $category->id }}</td>
                         <td class="border border-solid border-white pl-2 py-3"> <img
@@ -31,15 +33,21 @@
                         <td class="border border-solid border-white pl-2 py-3">{{ $category->title }}</td>
                         <td class=" border-white pl-2 py-3 flex gap-x-6 items-center justify-center">
                             <a href="{{ route('admin.categories.edit', $category->id) }}"
-                                class="bg-sky-600 px-6 py-2 rounded-sm">Edit</a>
-                            <form action="{{ route('admin.categories.delete', $category->id) }}" method="POST">
+                                class="bg-sky-600 px-6 py-2 rounded-sm border border-transparent hover:border hover:border-neutral-50">Edit
+                                <i class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="{{ route('admin.categories.delete', $category->id) }}" method="POST"
+                                class="bg-red-700 px-4 py-2 rounded-sm cursor-pointer border border-transparent hover:border hover:border-neutral-50">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="bg-red-700 px-4 py-2 rounded-sm cursor-pointer">
+                                <input type="submit" value="Delete" class="cursor-pointer">
+                                <i class="fa-solid fa-trash"></i>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                    {{-- message if no categories --}}
+                @empty
+                    <p class="text-white text-xl">No Categories</p>
+                @endforelse
             </tbody>
         </table>
     </div>

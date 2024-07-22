@@ -21,21 +21,27 @@
                 <th class="border border-solid border-white pl-2">Actions</th>
             </thead>
             <tbody class="border border-solid border-white">
-                @foreach ($tags as $tag)
+                @forelse ($tags as $tag)
                     <tr class="border border-solid border-white">
                         <td class="border border-solid border-white pl-2 py-3">{{ $tag->id }}</td>
-                        <td class="border border-solid border-white pl-2 py-3">{{ $tag->title }}</td>
+                        <td class="border border-solid text-xl border-white pl-2 py-3">{{ $tag->title }}</td>
                         <td class=" border-white pl-2 py-3 flex gap-x-6 items-center justify-center">
                             <a href="{{ route('admin.tags.edit', $tag->id) }}"
-                                class="bg-sky-600 px-6 py-2 rounded-sm">Edit</a>
-                            <form action="{{ route('admin.tags.delete', $tag->id) }}" method="POST">
+                                class="bg-sky-600 px-6 py-2 rounded-sm border border-transparent hover:border hover:border-neutral-50">Edit
+                                <i class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="{{ route('admin.tags.delete', $tag->id) }}" method="POST"
+                                class="bg-red-700 px-4 py-2 rounded-sm cursor-pointer border border-transparent hover:border hover:border-neutral-50">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="bg-red-700 px-4 py-2 rounded-sm cursor-pointer">
+                                <input type="submit" value="Delete" class="cursor-pointer">
+                                <i class="fa-solid fa-trash"></i>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                    {{-- message if no tags --}}
+                @empty
+                    <p class="text-white text-xl">No Tags</p>
+                @endforelse
             </tbody>
         </table>
     </div>

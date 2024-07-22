@@ -18,14 +18,15 @@
 
         <h1 class=" text-3xl text-white border-b">Edit Tag</h1>
         <div class="input my-5 flex flex-col gap-2">
-            <label for="title" class="text-xl text-white">Title :</label>
+            <label for="title" class="text-xl text-white">Tag:</label>
             <input type="text" id="title" name="title" value="{{ $tag->title }}"
                 class="border-solid border-black border w-80 h-10 outline-none pl-3 rounded-lg">
         </div>
 
-        <div class="buttons flex gap-4">
-            <a href="{{ route('admin.tags.index') }}" class="bg-neutral-100 text-xl px-4 py-1 rounded-md">Back</a>
-            <input type="submit" value="Send" class=" bg-neutral-100 text-xl px-4 py-1 rounded-md">
+        <div class="buttons flex gap-4 mt-5">
+            <a href="{{ route('admin.tags.index') }}"
+                class="bg-neutral-100 text-xl px-4 py-1 rounded-md hover:underline">Back</a>
+            <input type="submit" value="Send" class=" bg-neutral-100 text-xl px-4 py-1 rounded-md hover:underline">
         </div>
     </form>
 @endsection

@@ -22,12 +22,16 @@
         </div>
 
         <div class="input my-5">
-            <label for="image" class="bg-blue-600 px-4 py-2 font-semibold cursor-pointer">Add Image</label>
+            <label for="image"
+                class="bg-blue-600 px-4 py-2 font-semibold cursor-pointer text-slate-100 border border-transparent hover:border-slate-50">Add
+                Image</label>
             <input type="file" name="image" id="image" class="invisible">
         </div>
-        <div class="buttons flex gap-4">
-            <a href="{{ route('admin.categories.index') }}" class="bg-neutral-100 text-xl px-4 py-1 rounded-md">Back</a>
-            <input type="submit" value="Send" class=" bg-neutral-100 text-xl px-4 py-1 rounded-md">
+        <div class="buttons flex gap-4 mt-5">
+            <a href="{{ route('admin.categories.index') }}"
+                class="bg-neutral-100 text-xl px-4 py-1 rounded-md hover:underline">Back</a>
+            <input type="submit" value="Send"
+                class=" bg-neutral-100 text-xl px-4 py-1 rounded-md cursor-pointer hover:underline">
         </div>
     </form>
 @endsection
